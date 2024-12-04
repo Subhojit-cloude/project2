@@ -152,7 +152,7 @@ recognition.onresult=function(event){
     }
     if(transcript.includes("open your commands")){
         readOut("ok sir");
-       let a = window.open("http://127.0.0.1:5500/Project/commands.html");
+       let a = window.open("file:///C:/Users/Subhojit%20Gope/Downloads/commands%20(1).html");
         windowsB.push(a)
     }
     if(transcript.includes("clear all information")){
