@@ -1,31 +1,106 @@
 <!DOCTYPE html>
-
 <html lang="en">
-    <head>
-        <meta charset="utf-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <title>commands</title>
-        <meta name="description" content="">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <link rel="stylesheet" href="">
-    </head>
-    <body>
-        <h3>activate jarvis</h3>
-        <h3>clear all information</h3>
-        <h3>tell me today's top headlines</h3>
-        <h3>you are fine</h3>
-        <h3>"hello, jarvis</h3>
-        <h3>shut down jarvis.</h3>
-        <h3>open youtube , opening youtube </h3>
-        <h3>open google , opening google</h3>
-        <h3>please search</h3>
-        <h3>play , give me</h3>
-        <h3>please open my insta profile</h3>
-        <h3>please open my github profile</h3>
-       
-         <h3>open your commands </h3>
-       
+<head>
+    <meta charset="UTF-8">
+    <title>JARVIS — Voice Commands Guide</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Rajdhani:wght@400;500;600&family=Share+Tech+Mono&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary: #00f2ff;
+            --accent: #bc13fe;
+            --bg: #010409;
+            --card: rgba(13, 17, 23, 0.7);
+            --border: rgba(0, 242, 255, 0.1);
+            --text: #e6edf3;
+            --dim: #8b949e;
+        }
+        *{margin:0;padding:0;box-sizing:border-box}
+        body{background:var(--bg);color:var(--text);font-family:'Rajdhani',sans-serif;min-height:100vh;padding:40px 20px;position:relative}
         
-        <script src="" async defer></script>
-    </body>
+        /* HUD Grid */
+        body::before {
+            content: ''; position: fixed; inset: 0;
+            background-image: linear-gradient(var(--border) 1px, transparent 1px), linear-gradient(90deg, var(--border) 1px, transparent 1px);
+            background-size: 50px 50px; opacity: 0.1; z-index: -1;
+            mask-image: radial-gradient(circle at 50% 50%, black, transparent 80%);
+        }
+
+        h1{font-family:'Orbitron',sans-serif;color:var(--primary);text-align:center;letter-spacing:6px;margin-bottom:8px;font-size:2rem;text-shadow: 0 0 15px rgba(0, 242, 255, 0.4)}
+        .sub{text-align:center;color:var(--dim);font-family:'Share Tech Mono',monospace;font-size:.8rem;margin-bottom:40px;letter-spacing:2px}
+        .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:20px;max-width:1100px;margin:0 auto}
+        .card{background:var(--card);border:1px solid var(--border);border-radius:20px;padding:24px;backdrop-filter:blur(10px);transition:all 0.3s ease}
+        .card:hover{border-color:var(--primary);transform:translateY(-5px);box-shadow: 0 10px 30px rgba(0, 242, 255, 0.1)}
+        .card h3{font-family:'Orbitron',sans-serif;font-size:.75rem;letter-spacing:2px;color:var(--primary);margin-bottom:18px;display:flex;gap:10px;align-items:center}
+        .cmd{padding:10px 0;border-bottom:1px solid rgba(255,255,255,.05);font-size:.95rem;color:var(--dim);display:flex;justify-content:space-between;align-items:center}
+        .cmd:last-child{border-bottom:none}
+        code{font-family:'Share Tech Mono',monospace;color:var(--primary);background:rgba(0, 242, 255, 0.05);padding:4px 10px;border-radius:6px;font-size:.85rem;border:1px solid rgba(0, 242, 255, 0.1)}
+        a.back{display:inline-flex;align-items:center;gap:10px;color:var(--primary);text-decoration:none;font-family:'Orbitron',sans-serif;font-size:.75rem;letter-spacing:2px;margin-bottom:32px;padding:12px 24px;border:1px solid var(--border);border-radius:12px;transition:.3s;background:rgba(255,255,255,0.02)}
+        a.back:hover{background:rgba(0, 242, 255, 0.05);border-color:var(--primary);transform:translateX(-5px)}
+    </style>
+</head>
+<body>
+    <div style="max-width:1000px;margin:0 auto">
+        <a href="./index.html" class="back"><i class="fas fa-arrow-left"></i> Back to JARVIS</a>
+        <h1>VOICE COMMANDS</h1>
+        <p class="sub">All supported commands for J.A.R.V.I.S</p>
+        <div class="grid">
+            <div class="card">
+                <h3><i class="fas fa-power-off"></i> System</h3>
+                <div class="cmd"><code>hey jarvis</code> — Wake / Activate</div>
+                <div class="cmd"><code>shut down jarvis</code> — Stop listening</div>
+                <div class="cmd"><code>clear chat</code> — Clear chat history</div>
+                <div class="cmd"><code>close all tabs</code> — Close opened tabs</div>
+            </div>
+            <div class="card">
+                <h3><i class="fas fa-globe"></i> Open Websites</h3>
+                <div class="cmd"><code>open youtube</code></div>
+                <div class="cmd"><code>open google</code></div>
+                <div class="cmd"><code>open instagram</code></div>
+                <div class="cmd"><code>open github</code></div>
+                <div class="cmd"><code>open twitter</code></div>
+                <div class="cmd"><code>open linkedin</code></div>
+                <div class="cmd"><code>open spotify</code></div>
+                <div class="cmd"><code>open netflix</code></div>
+                <div class="cmd"><code>open reddit</code></div>
+                <div class="cmd"><code>open whatsapp</code></div>
+                <div class="cmd"><code>open amazon</code></div>
+            </div>
+            <div class="card">
+                <h3><i class="fas fa-robot"></i> AI Models</h3>
+                <div class="cmd"><code>open chatgpt</code></div>
+                <div class="cmd"><code>open gemini</code></div>
+                <div class="cmd"><code>open grok</code></div>
+                <div class="cmd"><code>open perplexity</code></div>
+                <div class="cmd"><code>open copilot</code></div>
+                <div class="cmd"><code>open claude</code></div>
+            </div>
+            <div class="card">
+                <h3><i class="fas fa-user"></i> My Profiles</h3>
+                <div class="cmd"><code>open my instagram</code></div>
+                <div class="cmd"><code>open my github</code></div>
+            </div>
+            <div class="card">
+                <h3><i class="fas fa-search"></i> Search & Play</h3>
+                <div class="cmd"><code>search for [topic]</code></div>
+                <div class="cmd"><code>please search [topic]</code></div>
+                <div class="cmd"><code>play [song name]</code></div>
+                <div class="cmd"><code>give me [song]</code></div>
+                <div class="cmd"><code>search youtube for [video]</code></div>
+            </div>
+            <div class="card">
+                <h3><i class="fas fa-info-circle"></i> Info & AI Chat</h3>
+                <div class="cmd"><code>what time is it</code></div>
+                <div class="cmd"><code>what's the date</code></div>
+                <div class="cmd"><code>how are you</code></div>
+                <div class="cmd"><code>weather</code> — Current weather</div>
+                <div class="cmd"><code>tell me a joke</code></div>
+                <div class="cmd"><code>what is [anything]</code> — AI answers</div>
+                <div class="cmd"><code>calculate [math]</code></div>
+                <div class="cmd"><code>who am i</code> — Your profile</div>
+            </div>
+        </div>
+    </div>
+</body>
 </html>

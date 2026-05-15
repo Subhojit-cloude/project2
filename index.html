@@ -1,72 +1,225 @@
-
 <!DOCTYPE html>
-
 <html lang="en">
-    <head>
-        <meta charset="utf-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <title>J A R V I S</title>
-        <meta name="description" content="">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <link rel="stylesheet" href="./Vsecond.css">
-        <link rel="shortcut icon" href="avtar.png" type="image/x-icon">
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
-       
-    </head>
-    <body>
-        
-        <section class="main">
-            <div class="image-container">
-                <div class="image">
-                    <img src="https://media0.giphy.com/media/wkSyGueYTnk40/giphy.gif?cid=6c09b952viv2uonpwiauu0uvzc07kqg8m5e16e4x2w2opvy5&ep=v1_internal_gif_by_id&rid=giphy.gif&ct=g" alt="image">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>J.A.R.V.I.S — Smart AI Assistant</title>
+    <meta name="description" content="JARVIS - Your personal AI voice assistant. Open websites, search the web, and chat with AI using just your voice.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700;800;900&family=Rajdhani:wght@300;400;500;600;700&family=Share+Tech+Mono&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="./Vsecond.css">
+</head>
+<body>
+
+    <!-- HUD Decor -->
+    <div class="hud-grid"></div>
+    <div class="hud-corner corner-tl"></div>
+    <div class="hud-corner corner-tr"></div>
+    <div class="hud-corner corner-bl"></div>
+    <div class="hud-corner corner-br"></div>
+
+    <!-- Scanning line effect -->
+    <div class="scan-line"></div>
+
+    <!-- Setup Modal -->
+    <div class="setup-overlay" id="setupOverlay">
+        <div class="setup-modal">
+            <div class="setup-header">
+                <div class="setup-logo">
+                    <i class="fas fa-robot"></i>
                 </div>
-                <h1>J A R V I S</h1>
-                <p> I am a Virtual Assistant JARVIS, How may i help you</p>
-            
+                <h2>SYSTEM INITIALIZATION</h2>
+                <p>Welcome to the next generation of JARVIS</p>
             </div>
-            <div class="input">
-                <button class="talk"><i class="fas fa-microphone-alt"></i></button>
-                <button><h1 class="content" id="content1">Click here to Speak</h1></button>
-                
-            </div>
-            <div class="temp">
-                <p id="location"></p>
-                <p id="country"></p>
-                <p id="weatherT"></p>
-                <p id="weatherD"></p>
-                <img src="" id="weatherIcon">
-                <p id="oTemp"></p>
-                <p id="feelLikeTemp"></p>
-                <p id="minT"></p>
-                <p id="maxT"></p>
+            <div class="setup-form">
+                <div class="form-group">
+                    <label>Identity / Name</label>
+                    <input type="text" id="setup-name" placeholder="Sir / Your Name" autocomplete="off">
+                </div>
+                <div class="form-group">
+                    <label>Designation / Bio</label>
+                    <input type="text" id="setup-bio" placeholder="Brief bio..." autocomplete="off">
+                </div>
+                <div class="form-group">
+                    <label>Terminal Location</label>
+                    <input type="text" id="setup-location" placeholder="City name..." autocomplete="off">
+                </div>
+                <div class="form-group">
+                    <label>Instagram Integration</label>
+                    <input type="text" id="setup-instagram" placeholder="@username" autocomplete="off">
+                </div>
+                <div class="form-group">
+                    <label>GitHub Integration</label>
+                    <input type="text" id="setup-github" placeholder="username" autocomplete="off">
+                </div>
+                <button class="setup-submit-btn" id="setupSubmitBtn">
+                    INITIALIZE JARVIS
+                </button>
             </div>
         </div>
-        <div class="jarvis_setup">
-            <label for="">Your Name</label>
-            <input type="text">
-            <br>
-            <label for="">Your Bio</label>
-            <input type="text">
-            <br>
-            <label for="">Your Location</label>
-            <input type="text">
-            <br>
-            <label for="">Instagram profile</label>
-            <input type="text">
-            <br>
-            <label for="">Github profile</label>
-            <input type="text">
-            <br>
-            <br>
-            <button id="sub_btn">Submit</button>
+    </div>
+
+    <!-- Main Interface -->
+    <div class="app-container">
+
+        <!-- Top Status Bar -->
+        <div class="status-bar">
+            <div class="status-left">
+                <div class="status-dot"></div>
+                <span id="statusText">SYSTEM ONLINE</span>
+            </div>
+            <div class="status-center">
+                <span id="clockDisplay">00:00:00</span>
+            </div>
+            <div class="status-right">
+                <span id="weatherBadge"><i class="fas fa-cloud"></i> --°C</span>
+                <button class="reset-btn" id="resetBtn" title="Reset Setup">
+                    <i class="fas fa-cog"></i>
+                </button>
+            </div>
         </div>
 
-        <div class="message"></div>
-        
-        </section>
+        <!-- Header -->
+        <header class="jarvis-header">
+            <div class="jarvis-avatar-wrapper">
+                <div class="avatar-ring ring-1"></div>
+                <div class="avatar-ring ring-2"></div>
+                <div class="jarvis-avatar" id="jarvisAvatar">
+                    <div class="avatar-core">J</div>
+                </div>
+            </div>
+            <div class="jarvis-title">
+                <h1>JARVIS</h1>
+                <p class="tagline">Just A Rather Very Intelligent System</p>
+                <div class="greeting-banner" id="greetingBanner" style="display:none;"></div>
+            </div>
+        </header>
 
-        
-       <script src="./Vthird.js"></script>
-       <noscript>need java script for this web</noscript>
-    </body>
+        <!-- Chat Area -->
+        <div class="chat-container" id="chatContainer">
+            <div class="chat-welcome">
+                <p>Voice command active. Say <strong>"Hey Jarvis"</strong> to begin.</p>
+            </div>
+        </div>
+
+        <!-- Voice Input Area -->
+        <div class="voice-control-area">
+            <div class="transcript-display" id="transcriptDisplay">
+                <span id="transcriptText">Awaiting command input...</span>
+            </div>
+
+            <!-- Main mic button -->
+            <button class="mic-button" id="micButton" title="Activate JARVIS">
+                <i class="fas fa-microphone" id="micIcon"></i>
+            </button>
+
+            <div class="control-actions">
+                <button class="ctrl-btn" id="textInputToggle" title="Manual Input">
+                    <i class="fas fa-keyboard"></i>
+                </button>
+                <button class="ctrl-btn" id="commandsToggle" title="Command List">
+                    <i class="fas fa-list-ul"></i>
+                </button>
+            </div>
+        </div>
+
+        <!-- Text input box (Floating/Hidden) -->
+        <div class="text-input-area" id="textInputArea" style="display:none; position:fixed; bottom:120px; left:50%; transform:translateX(-50%); width: min(600px, 90vw); z-index: 100;">
+            <input type="text" id="textInput" placeholder="Type command for JARVIS..." autocomplete="off" style="width:100%; padding:16px 24px; border-radius:30px; background:rgba(13,17,23,0.9); border:1px solid var(--primary); color:#fff; font-family:var(--font-inter); outline:none; box-shadow: 0 10px 30px rgba(0,0,0,0.5);">
+            <button id="sendTextBtn" style="position:absolute; right:10px; top:50%; transform:translateY(-50%); background:var(--primary); border:none; width:40px; height:40px; border-radius:50%; cursor:pointer; color:#000;"><i class="fas fa-paper-plane"></i></button>
+        </div>
+
+        <!-- Quick Actions -->
+        <div class="quick-actions">
+            <div class="qa-grid" id="quickActions">
+                <button class="qa-btn" onclick="quickOpen('youtube')">
+                    <i class="fab fa-youtube"></i><span>YouTube</span>
+                </button>
+                <button class="qa-btn" onclick="quickOpen('google')">
+                    <i class="fab fa-google"></i><span>Google</span>
+                </button>
+                <button class="qa-btn" onclick="quickOpen('instagram')">
+                    <i class="fab fa-instagram"></i><span>Instagram</span>
+                </button>
+                <button class="qa-btn" onclick="quickOpen('github')">
+                    <i class="fab fa-github"></i><span>GitHub</span>
+                </button>
+                <button class="qa-btn" onclick="quickOpen('chatgpt')">
+                    <i class="fas fa-brain"></i><span>ChatGPT</span>
+                </button>
+                <button class="qa-btn" onclick="quickOpen('gemini')">
+                    <i class="fas fa-star"></i><span>Gemini</span>
+                </button>
+            </div>
+        </div>
+
+        <!-- Commands Panel -->
+        <div class="commands-panel" id="commandsPanel" style="display:none;">
+            <div class="commands-header">
+                <h3><i class="fas fa-terminal"></i> VOICE COMMANDS</h3>
+                <button onclick="document.getElementById('commandsPanel').style.display='none'"><i class="fas fa-times"></i></button>
+            </div>
+            <div class="commands-list">
+                <div class="cmd-category">
+                    <h4><i class="fas fa-power-off"></i> System</h4>
+                    <div class="cmd-item"><code>hey jarvis</code> — Activate / Wake up</div>
+                    <div class="cmd-item"><code>shut down jarvis</code> — Stop listening</div>
+                    <div class="cmd-item"><code>clear chat</code> — Clear chat history</div>
+                </div>
+                <div class="cmd-category">
+                    <h4><i class="fas fa-globe"></i> Open Websites</h4>
+                    <div class="cmd-item"><code>open youtube</code> — Opens YouTube</div>
+                    <div class="cmd-item"><code>open google</code> — Opens Google</div>
+                    <div class="cmd-item"><code>open instagram</code> — Opens Instagram</div>
+                    <div class="cmd-item"><code>open github</code> — Opens GitHub</div>
+                    <div class="cmd-item"><code>open twitter</code> — Opens Twitter/X</div>
+                    <div class="cmd-item"><code>open linkedin</code> — Opens LinkedIn</div>
+                    <div class="cmd-item"><code>open spotify</code> — Opens Spotify</div>
+                    <div class="cmd-item"><code>open netflix</code> — Opens Netflix</div>
+                    <div class="cmd-item"><code>open reddit</code> — Opens Reddit</div>
+                    <div class="cmd-item"><code>open whatsapp</code> — Opens WhatsApp Web</div>
+                    <div class="cmd-item"><code>open my insta profile</code> — Your Instagram</div>
+                    <div class="cmd-item"><code>open my github profile</code> — Your GitHub</div>
+                </div>
+                <div class="cmd-category">
+                    <h4><i class="fas fa-robot"></i> AI Models</h4>
+                    <div class="cmd-item"><code>open chatgpt</code> — Opens ChatGPT</div>
+                    <div class="cmd-item"><code>open gemini</code> — Opens Google Gemini</div>
+                    <div class="cmd-item"><code>open grok</code> — Opens Grok AI (xAI)</div>
+                    <div class="cmd-item"><code>open perplexity</code> — Opens Perplexity AI</div>
+                    <div class="cmd-item"><code>open copilot</code> — Opens Microsoft Copilot</div>
+                    <div class="cmd-item"><code>open claude</code> — Opens Anthropic Claude</div>
+                </div>
+                <div class="cmd-category">
+                    <h4><i class="fas fa-search"></i> Search & Play</h4>
+                    <div class="cmd-item"><code>search for [topic]</code> — Google search</div>
+                    <div class="cmd-item"><code>please search [topic]</code> — Google search</div>
+                    <div class="cmd-item"><code>play [song]</code> — YouTube search</div>
+                    <div class="cmd-item"><code>give me [song]</code> — YouTube search</div>
+                    <div class="cmd-item"><code>search youtube for [video]</code> — YouTube search</div>
+                </div>
+                <div class="cmd-category">
+                    <h4><i class="fas fa-info-circle"></i> Info</h4>
+                    <div class="cmd-item"><code>what time is it</code> — Current time</div>
+                    <div class="cmd-item"><code>what's the date</code> — Current date</div>
+                    <div class="cmd-item"><code>how are you</code> — JARVIS status</div>
+                    <div class="cmd-item"><code>tell me a joke</code> — Random joke</div>
+                    <div class="cmd-item"><code>what is [topic]</code> — AI answers</div>
+                    <div class="cmd-item"><code>close all tabs</code> — Close opened tabs</div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- Admin link (hidden, access via /admin.html) -->
+    <a href="./admin.html" id="adminLink" style="position:fixed;bottom:16px;right:16px;z-index:500;background:rgba(6,18,40,.9);border:1px solid rgba(0,212,255,.2);color:#5a8a9a;padding:8px 14px;border-radius:8px;text-decoration:none;font-family:'Share Tech Mono',monospace;font-size:.7rem;letter-spacing:1px;transition:.3s;" onmouseover="this.style.borderColor='rgba(0,212,255,.6)';this.style.color='#00d4ff'" onmouseout="this.style.borderColor='rgba(0,212,255,.2)';this.style.color='#5a8a9a'">
+        <i class="fas fa-database" style="margin-right:6px"></i>ADMIN DB
+    </a>
+    <script src="./db.js"></script>
+    <script src="./Vthird.js"></script>
+</body>
 </html>
